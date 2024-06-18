@@ -1,0 +1,58 @@
+---
+title: "Week4_PP_Solution_Anthony_Firkins"
+author: "Anthony F."
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load necessary libraries
+```{r}
+library(ggplot2)
+```
+
+## Set the working directory to where your CSV file is located (change the path as needed)
+```{r}
+setwd("G:/My Drive/CSU Global/20240318_Spring_A/MIS470/Critical_Thinking/Portfolio_Project/")
+```
+
+## Read in the Ames housing data
+```{r}
+housing_data <- read.csv('MIS470HousingTraining(1000x25).csv', header = TRUE)
+```
+
+## Calculate summary statistics for the Sale Price
+```{r}
+sale_price_stats <- summary(housing_data$SalePrice)
+print(sale_price_stats)
+```
+
+## Minimum, Maximum, Mean, Median, Standard Deviation
+```{r}
+min_price <- min(housing_data$SalePrice)
+max_price <- max(housing_data$SalePrice)
+mean_price <- mean(housing_data$SalePrice)
+median_price <- median(housing_data$SalePrice)
+sd_price <- sd(housing_data$SalePrice)
+```
+
+## Print the calculated statistics
+```{r}
+cat("Minimum Sale Price:", min_price, "\n")
+cat("Maximum Sale Price:", max_price, "\n")
+cat("Mean Sale Price:", mean_price, "\n")
+cat("Median Sale Price:", median_price, "\n")
+cat("Standard Deviation of Sale Price:", sd_price, "\n")
+```
+
+## Plot a histogram for the distribution of the Sale Price
+```{r}
+ggplot(housing_data, aes(x = SalePrice)) +
+  geom_histogram(binwidth = 10000, fill = 'blue', color = 'black') +
+  ggtitle("Distribution of Sale Prices in Ames, IA") +
+  xlab("Sale Price") +
+  ylab("Frequency")
+```
